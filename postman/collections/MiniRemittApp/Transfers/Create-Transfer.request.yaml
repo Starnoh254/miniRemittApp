@@ -1,0 +1,25 @@
+$kind: http-request
+name: Create Transfer
+method: POST
+url: "{{base_url}}/api/v1/transfers"
+order: 1000
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "senderName": "Alice",
+      "recipientName": "Bob",
+      "amount": 1000,
+      "currency": "KES"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      const response = pm.response.json();
+      if (response && response.id) {
+          pm.collectionVariables.set("transfer_id", response.id);
+          console.log("transfer_id set to:", response.id);
+      }
+    language: text/javascript

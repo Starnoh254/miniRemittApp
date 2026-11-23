@@ -1,0 +1,8 @@
+$kind: http-request
+name: Get Transfer
+method: GET
+url: '{{base_url}}/api/v1/transfers/{{transfer_id}}'
+order: 2000
+pathVariables:
+  - key: transfer_id
+    value: '123e4567-e89b-12d3-a456-426614174000'
